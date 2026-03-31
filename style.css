@@ -285,7 +285,7 @@ img {
   align-items: center;
   justify-content: space-between;
   padding: 4rem;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 20px 40px rgba(255, 198, 217, 0.3);
 }
 
@@ -578,6 +578,7 @@ img {
   font-weight: 500;
   transition: var(--transition);
   background-color: #FAFAFA;
+  box-sizing: border-box;
 }
 
 .fun-form input:focus,
@@ -651,7 +652,17 @@ img {
   }
   .hero-left {
     padding-right: 0;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+  }
+  .hero-right {
+    width: 100%;
+    justify-content: center;
+    min-height: 320px;
+  }
+  .slider-container {
+    height: 320px;
+    max-width: 320px;
+    width: 100%;
   }
   .cupcake-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -678,7 +689,11 @@ img {
   }
   .contact-container {
     grid-template-columns: 1fr;
-    padding: 2rem;
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+  .contact-section {
+    padding: 3rem 1rem;
   }
 }
 
@@ -697,8 +712,9 @@ img {
     height: 250px;
   }
   .slider-container {
-    height: 300px;
-    max-width: 320px;
+    height: 280px;
+    max-width: 280px;
+    width: 100%;
   }
 }
 
