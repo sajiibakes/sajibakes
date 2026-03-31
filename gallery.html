@@ -1,176 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sweet Cupcake Shop - Cake Gallery." />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Gallery | Cupcake Shop</title>
-    <link rel="stylesheet" href="./style.css" />
-    <style>
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-        max-width: 1200px;
-        margin: 3rem auto 6rem;
-        padding: 0 2rem;
-      }
-      .gallery-item {
-        position: relative;
-        overflow: hidden;
-        border-radius: var(--border-radius-sm);
-        aspect-ratio: 4 / 5;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        border: 4px dashed var(--color-mint);
-      }
-      .gallery-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-      .gallery-item:hover img {
-        transform: scale(1.08);
-      }
-      .gallery-caption {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-        color: white;
-        padding: 2rem 1rem 1rem;
-        font-family: var(--font-heading);
-        font-size: 1.2rem;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        text-align: center;
-      }
-      .gallery-item:hover .gallery-caption {
-        opacity: 1;
-      }
-    </style>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5BW501SEDJ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-5BW501SEDJ');
-    </script>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar scrolled" id="navbar">
-      <div class="nav-container">
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="menu.html">Menu</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-        </ul>
-        <div class="logo">
-          <a href="index.html"><img src="sajibakes_logo.png" alt="Sajibakes" class="nav-logo"></a>
-        </div>
-        <ul class="nav-links right-links">
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-        <div class="hamburger" id="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sweet Cupcake Shop - Cake Gallery." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <title>Saji Bakes — Adding Sweetness to Every Celebration ✨</title>
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 3rem auto 6rem;
+      padding: 0 2rem;
+    }
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-      <ul>
-        <li><a href="index.html" class="mobile-link">Home</a></li>
-        <li><a href="menu.html" class="mobile-link">Menu</a></li>
-        <li><a href="gallery.html" class="mobile-link">Gallery</a></li>
-        <li><a href="index.html#about" class="mobile-link">About</a></li>
-        <li><a href="index.html#contact" class="mobile-link">Contact</a></li>
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--border-radius-sm);
+      aspect-ratio: 4 / 5;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      border: 4px dashed var(--color-mint);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+      color: white;
+      padding: 2rem 1rem 1rem;
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      text-align: center;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5BW501SEDJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-5BW501SEDJ');
+  </script>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
       </ul>
-    </div>
-
-    <!-- Page Header -->
-    <section class="banner-strip pastel-mint" style="margin-top: 80px; padding: 4rem 2rem;">
-      <h1 style="font-size: 3.5rem; color: var(--color-white); text-shadow: 2px 2px 0px var(--color-text);">Our Cake Gallery</h1>
-      <p style="color: var(--color-text); font-size: 1.2rem; margin-top: 1rem;">A sweet collection of our finest custom creations.</p>
-    </section>
-
-    <!-- Gallery Section -->
-    <div class="gallery-grid">
-      <div class="gallery-item fade-in">
-        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Birthday Cake" />
-        <div class="gallery-caption">Classic Birthday</div>
+      <div class="logo">
+        <a href="index.html"><img src="sajibakes_logo.png" alt="Sajibakes" class="nav-logo"></a>
       </div>
-      <div class="gallery-item fade-in delay-1">
-        <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wedding Cake" />
-        <div class="gallery-caption">Elegant Wedding</div>
-      </div>
-      <div class="gallery-item fade-in delay-2">
-        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Strawberry Cake" />
-        <div class="gallery-caption">Strawberry Magic</div>
-      </div>
-      <div class="gallery-item fade-in delay-3">
-        <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pastel Cupcakes" />
-        <div class="gallery-caption">Pastel Details</div>
-      </div>
-      <div class="gallery-item fade-in">
-        <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Vanilla Cakes" />
-        <div class="gallery-caption">Vanilla Bean Wonders</div>
-      </div>
-      <div class="gallery-item fade-in delay-1">
-        <img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chocolate Overload" />
-        <div class="gallery-caption">Chocolate Overload</div>
+      <ul class="nav-links right-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
+  </nav>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-content">
-        <h2>Saji Bakes <i class="fa-solid fa-cake-slice"></i></h2>
-        <div class="social-links">
-          <a href="https://www.instagram.com/saji_bakes" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="https://www.tiktok.com/@saji_bakes04" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="https://wa.me/9813374093" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
-        <p>&copy; 2026 Saji Bakes. Fresh homemade bakes.</p>
-      </div>
-    </footer>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="index.html" class="mobile-link">Home</a></li>
+      <li><a href="menu.html" class="mobile-link">Menu</a></li>
+      <li><a href="gallery.html" class="mobile-link">Gallery</a></li>
+      <li><a href="index.html#about" class="mobile-link">About</a></li>
+      <li><a href="index.html#contact" class="mobile-link">Contact</a></li>
+    </ul>
+  </div>
 
-    <!-- Scripts -->
-    <script src="./main.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        hamburger.addEventListener('click', () => {
-          hamburger.classList.toggle('active');
-          mobileMenu.classList.toggle('active');
-        });
+  <!-- Page Header -->
+  <section class="banner-strip pastel-mint" style="margin-top: 80px; padding: 4rem 2rem;">
+    <h1 style="font-size: 3.5rem; color: var(--color-white); text-shadow: 2px 2px 0px var(--color-text);">Our Cake
+      Gallery</h1>
+    <p style="color: var(--color-text); font-size: 1.2rem; margin-top: 1rem;">A sweet collection of our finest custom
+      creations.</p>
+  </section>
 
-        // Intersection Observer
-        const observerOptions = { threshold: 0.1, rootMargin: "0px" };
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
+  <!-- Gallery Section -->
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- Generated by gallery-data.js -->
+  </div>
 
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  <!-- Data and Rendering script -->
+  <script src="./gallery-data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('gallery-grid');
+
+      galleryData.forEach((item, index) => {
+        const delayClass = index % 4 !== 0 ? `delay-${index % 4}` : '';
+        const itemHtml = `
+            <div class="gallery-item fade-in ${delayClass}">
+              <img src="${item.src}" alt="${item.alt}" loading="lazy" />
+              <div class="gallery-caption">${item.caption}</div>
+            </div>
+          `;
+        grid.insertAdjacentHTML('beforeend', itemHtml);
       });
-    </script>
-  </body>
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h2>Saji Bakes <i class="fa-solid fa-cake-slice"></i></h2>
+      <div class="social-links">
+        <a href="https://www.instagram.com/saji_bakes" target="_blank" aria-label="Instagram"><i
+            class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com/@saji_bakes04" target="_blank" aria-label="TikTok"><i
+            class="fa-brands fa-tiktok"></i></a>
+        <a href="https://wa.me/9813374093" target="_blank" aria-label="WhatsApp"><i
+            class="fa-brands fa-whatsapp"></i></a>
+      </div>
+      <p>&copy; 2026 Saji Bakes. Fresh homemade bakes.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+      });
+
+      // Intersection Observer
+      const observerOptions = { threshold: 0.1, rootMargin: "0px" };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+
 </html>

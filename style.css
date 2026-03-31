@@ -22,6 +22,7 @@
   --border-radius-lg: 30px;
   --border-radius-sm: 15px;
   --transition: 0.3s ease;
+  --spacing-xl: 5rem;
 }
 
 * {
@@ -32,6 +33,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 140px; /* Offset for fixed navbar to avoid covering section titles */
 }
 
 body {
@@ -85,7 +87,7 @@ img {
   top: 0;
   width: 100%;
   z-index: 1000;
-  padding: 1.5rem 0;
+  padding: 1rem 0; /* Reduced from 1.5rem */
   background-color: var(--color-white);
   transition: var(--transition);
   box-shadow: 0 4px 15px rgba(0,0,0,0.03);
@@ -114,7 +116,7 @@ img {
 }
 
 .nav-logo {
-  height: 180px; /* Doubled size as requested */
+  height: 120px; /* Reverted to 120px for a more compact navbar */
   width: auto;
   border-radius: 8px; /* Slightly rounded corners for a nice look */
   object-fit: contain;
@@ -269,7 +271,7 @@ img {
 
 /* === Hero Section === */
 .hero {
-  padding-top: 120px;
+  padding-top: 180px; /* Reverted to 180px to match the 120px logo */
   padding-bottom: 60px;
   background-color: var(--color-white);
 }
@@ -665,6 +667,12 @@ img {
     left: 50%;
     transform: translateX(-50%);
   }
+  .nav-logo {
+    height: 80px; /* Reverted to 80px for a cleaner mobile experience */
+  }
+  .hero {
+    padding-top: 140px; /* Reverted to 140px */
+  }
   .about-card {
     flex-direction: column;
   }
@@ -687,6 +695,10 @@ img {
   .hero-right::before {
     width: 250px;
     height: 250px;
+  }
+  .slider-container {
+    height: 300px;
+    max-width: 320px;
   }
 }
 
