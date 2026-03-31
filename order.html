@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sweet Cupcake Shop - Your Order Cart." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Your Order | Cupcake Shop</title>
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5BW501SEDJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5BW501SEDJ');
+    </script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar scrolled" id="navbar">
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+        <div class="logo">
+          <a href="index.html"><img src="sajibakes_logo.png" alt="Sajibakes" class="nav-logo"></a>
+        </div>
+        <ul class="nav-links right-links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a href="index.html" class="mobile-link">Home</a></li>
+        <li><a href="menu.html" class="mobile-link">Menu</a></li>
+        <li><a href="gallery.html" class="mobile-link">Gallery</a></li>
+        <li><a href="index.html#about" class="mobile-link">About</a></li>
+        <li><a href="index.html#contact" class="mobile-link">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Order Page Layout -->
+    <section class="order-container fade-in" style="margin-top: 120px; min-height: 50vh;">
+      <h1 class="order-title">Your Order</h1>
+      <div class="dots-divider align-left"></div>
+
+      <div class="cart-items">
+        <!-- Cart Row 1 -->
+        <div class="cart-row fade-in delay-1">
+          <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Vanilla Bean Cupcake" class="cart-img" />
+          <div class="cart-details">
+            <h2>Vanilla Bean Cupcake</h2>
+            <p>Our signature classic fluffy vanilla cake.</p>
+          </div>
+          <div class="cart-qty">
+            <span class="qty-label">Qty:</span>
+            <strong>2</strong>
+          </div>
+          <div class="cart-price">$7.00</div>
+          <button class="remove-btn">&times;</button>
+        </div>
+
+        <!-- Cart Row 2 -->
+        <div class="cart-row fade-in delay-2">
+          <img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Double Chocolate Cupcake" class="cart-img" />
+          <div class="cart-details">
+            <h2>Double Chocolate</h2>
+            <p>Rich, dark chocolate cake.</p>
+          </div>
+          <div class="cart-qty">
+            <span class="qty-label">Qty:</span>
+            <strong>1</strong>
+          </div>
+          <div class="cart-price">$3.50</div>
+          <button class="remove-btn">&times;</button>
+        </div>
+      </div>
+
+      <div class="cart-summary fade-in delay-3">
+        <div class="summary-line">
+          <span>Subtotal</span>
+          <span>$10.50</span>
+        </div>
+        <div class="summary-line">
+          <span>Taxes</span>
+          <span>$1.05</span>
+        </div>
+        <div class="summary-line total-line">
+          <span>Total</span>
+          <span>$11.55</span>
+        </div>
+        <a href="#" class="cta-button cta-primary checkout-btn">Proceed to Checkout</a>
+        <a href="menu.html" class="back-link">Continue Shopping</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <h2>Cupcake Shop.</h2>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <p>&copy; 2026 The Cupcake Shop. Sweetly crafted.</p>
+      </div>
+    </footer>
+
+    <script src="./main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          mobileMenu.classList.toggle('active');
+        });
+
+        const observerOptions = { threshold: 0.1, rootMargin: "0px" };
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>

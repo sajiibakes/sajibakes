@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sweet Cupcake Shop - Handcrafted, delicious cupcakes baked daily." />
+    <!-- Fun, rounded Google Fonts for the Cupcake Shop Theme -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>The Cupcake Shop</title>
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5BW501SEDJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5BW501SEDJ');
+    </script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+        <div class="logo">
+          <a href="#home"><img src="sajibakes_logo.png" alt="Sajibakes" class="nav-logo"></a>
+        </div>
+        <ul class="nav-links right-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a href="#home" class="mobile-link">Home</a></li>
+        <li><a href="menu.html" class="mobile-link">Menu</a></li>
+        <li><a href="gallery.html" class="mobile-link">Gallery</a></li>
+        <li><a href="#about" class="mobile-link">About</a></li>
+        <li><a href="#contact" class="mobile-link">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <!-- We use a pastel inner wrapper to mimic Wix's column layout -->
+      <div class="hero-box">
+        <div class="hero-left fade-in">
+          <h2 class="subtitle">Fresh &amp; Sweet</h2>
+          <h1 class="title">Handcrafted<br>Cupcakes</h1>
+          <p class="hero-desc">Baked with love every single morning. Taste the magic in every bite.</p>
+          <a href="menu.html" class="cta-button cta-primary">Shop Now</a>
+        </div>
+        <div class="hero-right fade-in delay-1">
+          <div class="slider-container">
+            <!-- Slide 1 (Active) -->
+            <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Delicious Pink Cupcake" class="slide active" />
+            <!-- Slide 2 -->
+            <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Vanilla Bean Cupcake" class="slide" />
+            <!-- Slide 3 -->
+            <img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Double Chocolate Cupcake" class="slide" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Banner Strip (Sweet Mint) -->
+    <div class="banner-strip pastel-mint">
+      <h2>We believe every day deserves a little sweetness.</h2>
+    </div>
+
+    <!-- Menu / Gallery Section -->
+    <section class="menu-gallery" id="menu">
+      <div class="section-header">
+        <h2>Our Flavors</h2>
+        <div class="dots-divider"></div>
+        <p>Perfectly fluffy cakes topped with our signature buttercream frosting.</p>
+      </div>
+
+      <div class="cupcake-grid">
+        <!-- Item 1 -->
+        <div class="cupcake-card fade-in">
+          <div class="card-image">
+             <!-- Vanilla Cupcake -->
+            <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vanilla Bean Cupcake" />
+            <div class="card-hover">
+               <a href="product.html" class="view-btn">Order</a>
+            </div>
+          </div>
+          <h3><a href="product.html" style="text-decoration: underline; color: var(--color-text);">Vanilla Bean</a></h3>
+          <p>$3.50</p>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="cupcake-card fade-in delay-1">
+          <div class="card-image">
+             <!-- Chocolate Cupcake -->
+            <img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Double Chocolate Cupcake" />
+            <div class="card-hover">
+               <a href="product.html" class="view-btn">Order</a>
+            </div>
+          </div>
+          <h3><a href="product.html" style="text-decoration: underline; color: var(--color-text);">Double Chocolate</a></h3>
+          <p>$3.50</p>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="cupcake-card fade-in delay-2">
+          <div class="card-image">
+             <!-- Strawberry Cupcake -->
+            <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Strawberry Bliss Cupcake" />
+            <div class="card-hover">
+               <a href="product.html" class="view-btn">Order</a>
+            </div>
+          </div>
+          <h3><a href="product.html" style="text-decoration: underline; color: var(--color-text);">Strawberry Bliss</a></h3>
+          <p>$4.00</p>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="cupcake-card fade-in delay-3">
+          <div class="card-image">
+             <!-- Lemon Cupcake -->
+            <img src="https://images.unsplash.com/photo-1550853024-fae8d4cf2830?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lemon Drop Cupcake" />
+            <div class="card-hover">
+               <a href="product.html" class="view-btn">Order</a>
+            </div>
+          </div>
+          <h3><a href="product.html" style="text-decoration: underline; color: var(--color-text);">Lemon Drop</a></h3>
+          <p>$3.75</p>
+        </div>
+      </div>
+      
+      <div class="center-btn">
+        <a href="menu.html" class="cta-button cta-secondary">View Full Menu</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+      <div class="about-card fade-in">
+        <div class="about-img">
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Baker decorating a cupcake" />
+        </div>
+        <div class="about-text pastel-pink">
+          <h2>Meet the Baker</h2>
+          <div class="dots-divider align-left"></div>
+          <p>
+            Hi! I started baking cupcakes in my tiny kitchen, trying to find the perfect ratio of fluffy cake to sweet frosting. 
+          </p>
+          <p>
+            Today, The Cupcake Shop is a dream come true, spreading joy and sprinkles to our amazing local community every single day.
+          </p>
+          <img src="https://cdn-icons-png.flaticon.com/512/3256/3256087.png" alt="Cupcake Icon" class="cute-icon" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Features / Contact form Section -->
+    <section class="contact-section pastel-mint" id="contact">
+      <div class="contact-container">
+        <div class="contact-info">
+          <h2>Visit Us</h2>
+          <p class="big-text">We'd love to see you!</p>
+          <div class="info-block">
+            <h4>Location</h4>
+            <p>123 Sweet Avenue<br>Candy Corner, CA 90210</p>
+          </div>
+          <div class="info-block">
+            <h4>Hours</h4>
+            <p>Mon - Fri: 8:00 AM - 6:00 PM<br>Sat - Sun: 9:00 AM - 4:00 PM</p>
+          </div>
+          <div class="info-block">
+            <h4>Contact</h4>
+            <p>hello@thecupcakeshop.com<br>(555) 555-CAKE</p>
+          </div>
+        </div>
+        <div class="contact-form-box">
+          <h3>Drop a Line</h3>
+          <form class="fun-form">
+            <input type="text" placeholder="Name" required />
+            <input type="email" placeholder="Email" required />
+            <input type="text" placeholder="Subject" />
+            <textarea placeholder="Message" rows="4" required></textarea>
+            <button type="submit" class="cta-button cta-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <h2>Cupcake Shop.</h2>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <p>&copy; 2026 The Cupcake Shop. Sweetly crafted.</p>
+      </div>
+    </footer>
+
+    <!-- Essential Scripts -->
+    <script src="./main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          mobileMenu.classList.toggle('active');
+        });
+
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+          });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 20) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        });
+
+        // Intersection Observer
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>
