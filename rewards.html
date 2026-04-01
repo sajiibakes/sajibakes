@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saji Bakes Sweet Rewards — Mother's Day Special 💐</title>
+  
+  <!-- Same fonts as main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./rewards.css">
+  
+  <style>
+    /* Inline adjustment for the rewards page to avoid modifying style.css too much */
+    body.rewards-page {
+      padding-top: 100px; /* Offset for navbar if wanted, but this is a dedicated landing */
+    }
+  </style>
+</head>
+
+<body class="rewards-page">
+
+  <div class="rewards-container fade-in visible">
+    <h1 class="rewards-title">New Year & Mother's Day Rewards</h1>
+    <p class="rewards-subtitle">Celebrate Nepali New Year 2083 & Mother's Day 2026! 🌸✨</p>
+
+    <!-- Step 1: User Information -->
+    <div id="step-1" class="reward-step active">
+      <h3>Enter your details to start</h3>
+      <p style="margin-bottom: 1.5rem; font-size: 0.9rem;">To participate in our Festive Lucky Draw, tell us who you are!</p>
+      <form class="rewards-form" id="rewards-form">
+        <input type="text" id="user-name" placeholder="Your Name" required>
+        <input type="text" id="user-phone" placeholder="Instagram Username or Number" required>
+        <button type="submit" class="cta-button cta-primary">Next Step <i class="fas fa-arrow-right"></i></button>
+      </form>
+    </div>
+
+    <!-- Step 2: Follow Instagram -->
+    <div id="step-2" class="reward-step">
+      <h3>Follow us on Instagram</h3>
+      <div class="follow-box">
+        <p>Follow <strong>@saji_bakes04</strong> to unlock your reward!</p>
+        <a href="https://www.instagram.com/saji_bakes04" target="_blank" class="cta-button cta-secondary" id="follow-btn">
+          <i class="fab fa-instagram"></i> Follow us
+        </a>
+      </div>
+      <button class="cta-button cta-primary" id="goto-scratch">I've Followed! <i class="fas fa-check"></i></button>
+    </div>
+
+    <!-- Step 3: Scratch and Win -->
+    <div id="step-3" class="reward-step">
+      <h3>Scratch your gift! 🎁</h3>
+      <p>Use your mouse or finger to scratch the surface.</p>
+      <div class="scratch-card-wrapper">
+        <!-- Beneath the canvas is the reward -->
+        <div class="scratch-reward">
+          <div class="reward-emoji" id="reward-emoji">💐</div>
+          <div class="reward-text" id="reward-text">Loading your surprise...</div>
+        </div>
+        <!-- The scratchable layer -->
+        <canvas id="scratch-canvas" width="320" height="200"></canvas>
+      </div>
+      <p class="instructions" style="background: transparent; border: none; font-style: italic;">
+        Scratch at least 50% to reveal your prize!
+      </p>
+    </div>
+
+    <!-- Step 4: Final Reward Reveal -->
+    <div id="step-4" class="reward-step">
+      <div class="final-reward-reveal">
+        <h3 style="color: var(--color-text);">Congratulations, <span id="display-name"></span>! 🎉</h3>
+        <p>Your Mother's Day Reward is:</p>
+        <h2 id="final-reward-text" style="color: var(--color-pink-dark); margin: 1.5rem 0;"></h2>
+        <div class="instructions">
+          <p><strong>How to Redeem:</strong></p>
+          <p>📸 Take a screenshot of this screen.</p>
+          <p>📩 Send it to our Instagram <strong>@saji_bakes04</strong> when placing your order.</p>
+        </div>
+        <p class="terms">Valid till April 30 • One offer per user • Screenshot required for redemption</p>
+      </div>
+      <a href="index.html" class="back-home">Back to Home Page</a>
+    </div>
+
+  </div>
+
+  <script src="./rewards.js"></script>
+</body>
+
+</html>
