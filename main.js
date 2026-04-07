@@ -6,15 +6,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Generate hero slides dynamically if the hero-slider exists
   const sliderContainer = document.getElementById('hero-slider');
   if (sliderContainer && typeof sliderData !== 'undefined') {
-    // Shuffle the slider data
-    const shuffledSlider = [...sliderData].sort(() => Math.random() - 0.5);
+    sliderData.forEach((slide, index) => {
+      const slideDiv = document.createElement('div');
+      slideDiv.className = index === 0 ? 'slide active' : 'slide';
 
-    shuffledSlider.forEach((slide, index) => {
       const img = document.createElement('img');
       img.src = slide.src;
       img.alt = slide.alt;
-      img.className = index === 0 ? 'slide active' : 'slide';
-      sliderContainer.appendChild(img);
+      slideDiv.appendChild(img);
+
+      if (slide.link && slide.cta) {
+        const overlay = document.createElement('div');
+        overlay.className = 'slide-cta-overlay';
+
+        const btn = document.createElement('a');
+        btn.href = slide.link;
+        btn.className = 'slide-cta-btn';
+        btn.innerText = slide.cta;
+
+        overlay.appendChild(btn);
+        slideDiv.appendChild(overlay);
+      }
+
+      sliderContainer.appendChild(slideDiv);
     });
   }
 

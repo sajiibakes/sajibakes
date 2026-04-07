@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Saji Bakes Giveaway Admin - Sync Instagram Comments" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Admin Sync | Saji Bakes 🎁</title>
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    .sync-hero {
+      padding: 160px 2rem 60px;
+      text-align: center;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sync-hero h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sync-hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0.5rem auto 2rem;
+      opacity: 0.9;
+    }
+
+    .sync-container {
+      max-width: 600px;
+      margin: -40px auto 100px;
+      background: white;
+      padding: 3rem;
+      border-radius: var(--border-radius-sm);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .sync-btn {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      border: none;
+      padding: 1.2rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      cursor: pointer;
+      font-family: var(--font-body);
+      box-shadow: 0 6px 20px rgba(106, 17, 203, 0.3);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .sync-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(106, 17, 203, 0.4);
+    }
+
+    .sync-btn:disabled {
+      background: #ccc;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .sync-status {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border-radius: 12px;
+      background: #f8f9fa;
+      border: 1px solid #eee;
+      display: none;
+    }
+
+    .sync-status.active {
+      display: block;
+    }
+
+    .sync-log {
+      margin-top: 1rem;
+      text-align: left;
+      font-family: monospace;
+      font-size: 0.9rem;
+      height: 150px;
+      overflow-y: auto;
+      background: #1e1e1e;
+      color: #00ff00;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(255, 255, 255, .3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .done-links {
+      margin-top: 2rem;
+      display: none;
+    }
+
+    .done-links.active {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .secondary-btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #6a11cb;
+      border: 2px solid #6a11cb;
+      transition: all 0.2s;
+    }
+
+    .secondary-btn:hover {
+      background: #6a11cb;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+      <div class="logo">
+        <a href="index.html"><img src="sajibakes_logo.png" alt="Sajibakes" class="nav-logo"></a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links right-links">
+        <li><a href="offer.html">Offer</a></li>
+        <li><a href="giveaway-entries.html">Giveaway</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="index.html" class="mobile-link">Home</a></li>
+      <li><a href="menu.html" class="mobile-link">Menu</a></li>
+      <li><a href="gallery.html" class="mobile-link">Gallery</a></li>
+      <li><a href="offer.html" class="mobile-link">Offer</a></li>
+      <li><a href="giveaway-entries.html" class="mobile-link">Giveaway</a></li>
+      <li><a href="index.html#about" class="mobile-link">About</a></li>
+      <li><a href="index.html#contact" class="mobile-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero -->
+  <div class="sync-hero">
+    <h1><i class="fa-brands fa-instagram"></i> Instagram Sync</h1>
+    <p>Manual synchronization tool to fetch all comments from the Instagram giveaway post and update the entries sheet.</p>
+  </div>
+
+  <!-- Sync Container -->
+  <div class="sync-container">
+    <button class="sync-btn" id="sync-btn" onclick="startSync()">
+      <i class="fa-solid fa-cloud-arrow-down"></i> Fetch & Update Sheet
+    </button>
+
+    <div class="sync-status" id="sync-status">
+      <div id="status-text">Ready to sync...</div>
+      <div class="sync-log" id="sync-log"></div>
+    </div>
+
+    <div class="done-links" id="done-links">
+      <a href="giveaway-entries.html" class="secondary-btn">
+        <i class="fa-solid fa-eye"></i> View Entries Page
+      </a>
+      <a href="https://docs.google.com/spreadsheets/d/1NVSqQnX6BcEg6o2TDQiuj9MaT2jzRO86kmbzxIUcLNs/edit" target="_blank" class="secondary-btn">
+        <i class="fa-solid fa-table"></i> Open Google Sheet
+      </a>
+    </div>
+  </div>
+
+  <script src="./config.js"></script>
+  <script>
+    const logEl = document.getElementById('sync-log');
+    const statusEl = document.getElementById('status-text');
+    const btn = document.getElementById('sync-btn');
+    const statusBox = document.getElementById('sync-status');
+    const doneLinks = document.getElementById('done-links');
+
+    function log(msg, type = 'info') {
+      const time = new Date().toLocaleTimeString();
+      const prefix = type === 'error' ? '❌ ' : type === 'success' ? '✅ ' : '🔹 ';
+      logEl.innerHTML += `<div>[${time}] ${prefix}${msg}</div>`;
+      logEl.scrollTop = logEl.scrollHeight;
+      console.log(`[Sync] ${msg}`);
+    }
+
+    async function startSync() {
+      btn.disabled = true;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span class="spinner"></span> Working...';
+      statusBox.classList.add('active');
+      doneLinks.classList.remove('active');
+      logEl.innerHTML = '';
+      
+      log('Starting sync process...');
+
+      try {
+        let allComments = [];
+        let nextUrl = `https://graph.facebook.com/v25.0/${CONFIG.INSTAGRAM.MEDIA_ID}/comments?fields=id,text,username,timestamp&limit=100&access_token=${CONFIG.INSTAGRAM.ACCESS_TOKEN}`;
+
+        log('Connecting to Instagram Graph API...');
+
+        while (nextUrl) {
+          log(`Fetching page (limit 100)...`);
+          const fbResponse = await fetch(nextUrl);
+          let data;
+          if (!fbResponse.ok) {
+            try { data = await fbResponse.json(); } catch(e){}
+            const errorMsg = data && data.error ? data.error.message : 'Unknown Instagram API Error';
+            throw new Error(errorMsg);
+          }
+          data = await fbResponse.json();
+          
+          const pageComments = data.data || [];
+          allComments = allComments.concat(pageComments);
+          log(`Found ${pageComments.length} comments on this page. Total: ${allComments.length}`, 'success');
+
+          statusEl.textContent = `Syncing... Found ${allComments.length} comments`;
+
+          nextUrl = data.paging && data.paging.next ? data.paging.next : null;
+        }
+
+        if (allComments.length === 0) {
+          throw new Error('No comments found on the specified post. Check MEDIA_ID/Access Token.');
+        }
+
+        log(`Formatting ${allComments.length} comments for Google Sheet...`);
+        const values = allComments.map(c => [
+          c.username, 
+          c.text, 
+          new Date(c.timestamp).toLocaleString()
+        ]);
+
+        log(`Sending data to Google Apps Script...`);
+        if (!CONFIG.GOOGLE_SHEETS.APP_SCRIPT_URL || CONFIG.GOOGLE_SHEETS.APP_SCRIPT_URL.includes('REPLACE')) {
+          throw new Error('Apps Script URL is not configured in config.js');
+        }
+
+        const appendResponse = await fetch(CONFIG.GOOGLE_SHEETS.APP_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ values })
+        });
+        
+        log('Data pushed to Apps Script pipeline!', 'success');
+        log('Waiting 3 seconds for Google to process the write...', 'info');
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        statusEl.innerHTML = '<strong style="color: green;">SYNC COMPLETE!</strong>';
+        log('Spreadsheet updated successfully with validated entries!', 'success');
+        doneLinks.classList.add('active');
+
+      } catch (e) {
+        log(`CRITICAL ERROR: ${e.message}`, 'error');
+        statusEl.innerHTML = '<strong style="color: red;">Sync Failed</strong>';
+        alert(`Sync Failed: ${e.message}`);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
+    }
+
+    // Mobile menu logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          mobileMenu.classList.toggle('active');
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

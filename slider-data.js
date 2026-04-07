@@ -4,6 +4,10 @@
  */
 const sliderData = [
   {
+    src: "images/offer/IMG_7948.png",
+    alt: "New Year & Mother's Day Giveaway"
+  },
+  {
     src: "images/slider/6d279adf-c0eb-4486-8611-2805879f8ae9.JPG",
     alt: "Bakery Delight 1"
   },

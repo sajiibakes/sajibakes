@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Saji Bakes Giveaway Entries — Mother's Day & Nepali New Year Special" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Giveaway Entries | Saji Bakes 🎁</title>
+  <link rel="stylesheet" href="./style.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5BW501SEDJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-5BW501SEDJ');
+  </script>
+  <style>
+    /* ===== Giveaway Entries Page Styles ===== */
+    .entries-hero {
+      padding: 160px 2rem 60px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--color-pink) 0%, var(--color-mint) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .entries-hero::before {
+      content: '🎁';
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.07;
+      top: 20px;
+      left: -20px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .entries-hero::after {
+      content: '🌸';
+      position: absolute;
+      font-size: 6rem;
+      opacity: 0.07;
+      bottom: 10px;
+      right: -10px;
+      animation: float 8s ease-in-out infinite 2s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(10deg); }
+    }
+
+    .entries-hero h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .entries-hero p {
+      font-size: 1.1rem;
+      color: var(--color-text-light);
+      max-width: 550px;
+      margin: 0.5rem auto 1.5rem;
+    }
+
+    .entries-stats {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: white;
+      border-radius: 50px;
+      padding: 0.6rem 1.5rem;
+      font-weight: 700;
+      color: var(--color-pink-dark);
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(255, 155, 186, 0.3);
+      margin-bottom: 0.5rem;
+    }
+
+    .entries-stats .count-badge {
+      background: var(--color-pink-dark);
+      color: white;
+      border-radius: 50px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    /* ===== Main Entries Section ===== */
+    .entries-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .entries-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .entries-toolbar h2 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      color: var(--color-text);
+    }
+
+    .pick-winner-btn {
+      background: linear-gradient(135deg, var(--color-pink-dark), #e85e82);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: var(--font-body);
+      box-shadow: 0 6px 15px rgba(255, 100, 150, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pick-winner-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 100, 150, 0.45);
+    }
+
+    .pick-winner-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* ===== Entry Cards Grid ===== */
+    .entries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .entry-card {
+      background: white;
+      border-radius: var(--border-radius-sm);
+      padding: 1.4rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 2px solid transparent;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      animation: popIn 0.4s ease both;
+    }
+
+    .entry-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-pink);
+      box-shadow: 0 10px 25px rgba(255, 155, 186, 0.2);
+    }
+
+    .entry-card.winner {
+      border-color: var(--color-pink-dark);
+      background: linear-gradient(135deg, #fff5f8, #fff);
+      box-shadow: 0 10px 30px rgba(255, 100, 150, 0.25);
+      animation: winnerPulse 1s ease 3;
+    }
+
+    @keyframes winnerPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(12px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .entry-number {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-mint), var(--color-mint-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--color-text);
+    }
+
+    .entry-card.winner .entry-number {
+      background: linear-gradient(135deg, var(--color-pink), var(--color-pink-dark));
+      color: white;
+    }
+
+    .entry-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .entry-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--color-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .entry-tag {
+      font-size: 0.75rem;
+      color: var(--color-text-light);
+      margin-top: 0.15rem;
+    }
+
+    .winner-badge {
+      background: var(--color-pink-dark);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-left: auto;
+      flex-shrink: 0;
+      display: none;
+    }
+
+    /* ===== Loading State ===== */
+    .loading-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      display: none;
+    }
+
+    .loading-state.active {
+      display: block;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid var(--color-pink);
+      border-top-color: var(--color-pink-dark);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-state p {
+      color: var(--color-text-light);
+      font-size: 1rem;
+    }
+
+    /* ===== Error State ===== */
+    .error-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      display: none;
+    }
+
+    .error-state.active {
+      display: block;
+    }
+
+    .error-state .error-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .error-state p {
+      color: var(--color-text-light);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* ===== Empty State ===== */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      display: none;
+    }
+
+    .empty-state.active {
+      display: block;
+    }
+
+    .empty-state .empty-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state h3 {
+      font-size: 1.4rem;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .empty-state p {
+      color: var(--color-text-light);
+    }
+
+    @media (max-width: 600px) {
+      .entries-hero h1 {
+        font-size: 2rem;
+      }
+
+      .entries-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .entries-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .entries-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+      <div class="logo">
+        <a href="index.html"><img src="sajibakes_logo.png" alt="Sajibakes" class="nav-logo"></a>
+      </div>
+      <ul class="nav-links right-links">
+        <li><a href="offer.html">Offer</a></li>
+        <li><a href="giveaway-entries.html" class="active">Giveaway</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="index.html" class="mobile-link">Home</a></li>
+      <li><a href="menu.html" class="mobile-link">Menu</a></li>
+      <li><a href="gallery.html" class="mobile-link">Gallery</a></li>
+      <li><a href="offer.html" class="mobile-link">Offer</a></li>
+      <li><a href="giveaway-entries.html" class="mobile-link active">Giveaway</a></li>
+      <li><a href="index.html#about" class="mobile-link">About</a></li>
+      <li><a href="index.html#contact" class="mobile-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero -->
+  <div class="entries-hero fade-in">
+    <h1>🎁 Giveaway Entries</h1>
+    <p>Mother's Day &amp; Nepali New Year 2083 Special<br>All participants from our Instagram giveaway.</p>
+    <div class="entries-stats">
+      <i class="fa-solid fa-users"></i>
+      <span id="total-entries-text">Loading entries...</span>
+      <span class="count-badge" id="entry-count">—</span>
+    </div>
+    <p style="font-size: 0.85rem; color: var(--color-text-light); margin-top: 0.5rem;">
+      ✨ Valid till Baishak 5 · Follow <strong>@saji_bakes</strong> on Instagram to participate
+    </p>
+  </div>
+
+  <!-- Entries Section -->
+  <section class="entries-section">
+
+    <!-- Toolbar -->
+    <div class="entries-toolbar">
+      <h2>All Participants 🌸</h2>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading-state active" id="loading-state">
+      <div class="spinner"></div>
+      <p>Fetching list wait a moment...</p>
+    </div>
+
+    <!-- Error -->
+    <div class="error-state" id="error-state">
+      <div class="error-icon">😕</div>
+      <h3>Could not load entries</h3>
+      <p>There was a problem connecting to the Google Sheet. Please check your internet connection and try refreshing.</p>
+      <button class="refresh-btn" onclick="loadEntries()" style="margin: 1.5rem auto; display: inline-flex;">
+        <i class="fa-solid fa-rotate"></i> Try Again
+      </button>
+    </div>
+
+    <!-- Empty -->
+    <div class="empty-state" id="empty-state">
+      <div class="empty-icon">🎀</div>
+      <h3>No entries yet!</h3>
+      <p>Looks like no one has participated yet. Share the giveaway on Instagram to get entries rolling in!</p>
+    </div>
+
+    <!-- Entries Grid -->
+    <div class="entries-grid" id="entries-grid"></div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h2>Saji Bakes <i class="fa-solid fa-cake-slice"></i></h2>
+      <div class="social-links">
+        <a href="https://www.instagram.com/saji_bakes" target="_blank" aria-label="Instagram"><i
+            class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com/@saji_bakes04" target="_blank" aria-label="TikTok"><i
+            class="fa-brands fa-tiktok"></i></a>
+        <a href="https://wa.me/9813374093" target="_blank" aria-label="WhatsApp"><i
+            class="fa-brands fa-whatsapp"></i></a>
+      </div>
+      <p>&copy; 2026 Saji Bakes. Fresh homemade bakes.</p>
+    </div>
+  </footer>
+
+  <script src="./config.js"></script>
+  <script src="./main.js"></script>
+  <script>
+    let allEntries = [];
+
+    function showState(state) {
+      document.getElementById('loading-state').classList.toggle('active', state === 'loading');
+      document.getElementById('error-state').classList.toggle('active', state === 'error');
+      document.getElementById('empty-state').classList.toggle('active', state === 'empty');
+    }
+
+    async function loadEntries() {
+      showState('loading');
+      document.getElementById('entries-grid').innerHTML = '';
+      document.getElementById('entry-count').textContent = '—';
+      document.getElementById('total-entries-text').textContent = 'Loading entries...';
+
+      try {
+        const API_URL = `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.GOOGLE_SHEETS.SHEET_ID}/values/A:E?key=${CONFIG.GOOGLE_SHEETS.API_KEY}`;
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error('Failed to fetch data from Google Sheets API');
+        }
+        const data = await response.json();
+        
+        const rows = data.values || [];
+        // Extract only valid, unique entries (Column E is 1)
+        // Skip header row (index 0)
+        allEntries = rows.slice(1)
+          .filter(row => row[4] == "1")
+          .map(row => (row[0] || '').trim());
+
+        if (allEntries.length === 0) {
+          showState('empty');
+          return;
+        }
+
+        showState('none');
+        renderEntries(allEntries);
+
+        document.getElementById('entry-count').textContent = allEntries.length;
+        document.getElementById('total-entries-text').textContent = `Total Participants`;
+      } catch (e) {
+        console.error('Error fetching sheet data:', e);
+        showState('error');
+        document.querySelector('#error-state p').textContent = 'Google Sheet Error: ' + e.message;
+      }
+    }
+
+    function renderEntries(entries) {
+      const grid = document.getElementById('entries-grid');
+      grid.innerHTML = '';
+
+      entries.forEach((name, index) => {
+        const card = document.createElement('div');
+        card.className = `entry-card fade-in`;
+        card.style.animationDelay = `${Math.min(index * 0.04, 0.8)}s`;
+
+        const displayName = name.startsWith('@') ? name : name;
+        const isHandle = name.startsWith('@');
+
+        card.innerHTML = `
+          <div class="entry-number">${index + 1}</div>
+          <div class="entry-info">
+            <div class="entry-name">${escapeHtml(displayName)}</div>
+            <div class="entry-tag">${isHandle ? 'Instagram' : 'Participant'} ✨</div>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.appendChild(document.createTextNode(text));
+      return div.innerHTML;
+    }
+
+    // Mobile menu
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          mobileMenu.classList.toggle('active');
+        });
+      }
+
+      // Fade-in observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      // Load entries on page load from Google Sheet
+      loadEntries();
+    });
+  </script>
+</body>
+
+</html>
