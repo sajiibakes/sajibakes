@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Saji Bakes Orders — View all cake orders in one place." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Orders List | Saji Bakes 🎂</title>
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    /* ===== Orders Page Specific Styles ===== */
+    .orders-hero {
+      padding: 160px 2rem 60px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--color-mint) 0%, var(--color-pink) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .orders-hero::before {
+      content: '🎂';
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.1;
+      top: 20px;
+      left: -20px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .orders-hero h1 {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .orders-hero p {
+      font-size: 1.2rem;
+      color: var(--color-text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ===== Orders Container ===== */
+    .orders-section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 2rem 100px;
+    }
+
+    .orders-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--border-radius-sm);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Stats Cards */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--border-radius-sm);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-left: 5px solid var(--color-mint);
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-card.pending {
+      border-left-color: #ffeeba;
+    }
+
+    .stat-card.completed {
+      border-left-color: var(--color-mint);
+    }
+
+    .stat-card.total {
+      border-left-color: var(--color-pink);
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-family: var(--font-heading);
+      color: var(--color-text);
+    }
+
+    .connection-banner {
+      background: #fdfdfd;
+      border: 1px solid #f0f0f0;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      margin-top: 1rem;
+    }
+
+    .connection-dot {
+      width: 10px;
+      height: 10px;
+      background: #4CAF50;
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      max-width: 400px;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-light);
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 3rem;
+      border: 2px solid #f0f0f0;
+      border-radius: 50px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--color-pink-dark);
+      box-shadow: 0 0 10px rgba(255, 155, 186, 0.2);
+    }
+
+    .refresh-btn {
+      background: var(--color-white);
+      color: var(--color-text);
+      border: 2px solid #f0f0f0;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .refresh-btn:hover {
+      background: #fafafa;
+      border-color: var(--color-mint-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ===== Table Styles ===== */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      background: white;
+      border-radius: var(--border-radius-sm);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+      border: 1px solid #f9f9f9;
+    }
+
+    .orders-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      min-width: 1100px;
+    }
+
+    .orders-table th {
+      background: #fdfdfd;
+      padding: 1.2rem 1rem;
+      font-family: var(--font-heading);
+      font-weight: normal;
+      font-size: 1rem;
+      color: var(--color-text);
+      border-bottom: 2px solid var(--color-mint);
+      white-space: nowrap;
+    }
+
+    .orders-table td {
+      padding: 1.2rem 1rem;
+      border-bottom: 1px solid #f5f5f5;
+      font-size: 0.95rem;
+      color: var(--color-text);
+      vertical-align: middle;
+    }
+
+    .orders-table tr:hover td {
+      background-color: #f9fffb;
+    }
+
+    .orders-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Column Specifics */
+    .col-name {
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    .col-phone {
+      font-family: monospace;
+      font-size: 1rem;
+    }
+
+    .col-date {
+      color: #e85e82;
+      font-weight: 600;
+    }
+
+    .col-flavor {
+      color: #8a7ab0;
+      font-weight: 600;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-pickup {
+      background: var(--color-mint);
+      color: #2d6a4f;
+    }
+
+    .badge-delivery {
+      background: var(--color-pink);
+      color: #a33b5c;
+    }
+
+    .badge-candle {
+      background: #fff8c9;
+      color: #856404;
+      border: 1px solid #ffeeba;
+    }
+
+    .badge-none {
+      background: #f0f0f0;
+      color: #888;
+    }
+
+    /* Status Dropdown */
+    .status-select {
+      padding: 0.4rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 2px solid #f0f0f0;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all 0.2s;
+      width: 140px;
+    }
+
+    .status-pending {
+      background: #fff8c9;
+      border-color: #ffeeba;
+      color: #856404;
+    }
+
+    .status-completed {
+      background: var(--color-mint);
+      border-color: #d1f3e0;
+      color: #2d6a4f;
+    }
+
+    .status-select:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .status-updating {
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Loading/States */
+    .loading-state {
+      padding: 5rem 0;
+      text-align: center;
+      display: none;
+    }
+
+    .loading-state.active {
+      display: block;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--color-pink);
+      border-top-color: var(--color-pink-dark);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .error-state,
+    .empty-state {
+      padding: 5rem 0;
+      text-align: center;
+      display: none;
+    }
+
+    .error-state.active,
+    .empty-state.active {
+      display: block;
+    }
+
+    .state-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .orders-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .orders-section {
+        padding: 2rem 1rem;
+      }
+
+      .orders-toolbar {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+      <div class="logo">
+        <a href="index.html"><img src="sajibakes_logo.png" alt="Sajibakes" class="nav-logo"></a>
+      </div>
+      <ul class="nav-links right-links">
+        <li><a href="offer.html">Offer</a></li>
+        <li><a href="giveaway-entries.html">Giveaway</a></li>
+        <li><a href="orders.html" class="active">Orders</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="offer.html">Offer</a></li>
+      <li><a href="orders.html">Orders</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero -->
+  <div class="orders-hero fade-in">
+    <h1>Orders Management</h1>
+    <p>Connected to the Google Sheet defined in your configuration.</p>
+    <div class="connection-banner">
+      <div class="connection-dot"></div>
+      <span>Connected to <strong>Saji Bakes Spreadsheet</strong></span>
+      <a id="sheet-link" href="#" target="_blank"
+        style="color: var(--color-pink-dark); text-decoration: underline; margin-left: 10px;">
+        <i class="fa-solid fa-external-link"></i> Open Sheet
+      </a>
+    </div>
+  </div>
+
+  <!-- Orders Content -->
+  <section class="orders-section">
+    <!-- Stats Cards -->
+    <div class="stats-container fade-in delay-1">
+      <div class="stat-card total">
+        <span class="stat-label">Total Orders</span>
+        <span class="stat-value" id="stat-total">0</span>
+      </div>
+      <div class="stat-card pending">
+        <span class="stat-label">Pending</span>
+        <span class="stat-value" id="stat-pending">0</span>
+      </div>
+      <div class="stat-card completed">
+        <span class="stat-label">Completed</span>
+        <span class="stat-value" id="stat-completed">0</span>
+      </div>
+    </div>
+    <!-- Toolbar -->
+    <div class="orders-toolbar fade-in delay-1">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="order-search" placeholder="Search by name or phone..." onkeyup="filterOrders()">
+      </div>
+      <button class="refresh-btn" onclick="fetchOrders()">
+        <i class="fa-solid fa-rotate"></i> Refresh Data
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading" class="loading-state active">
+      <div class="spinner"></div>
+      <p>Fetching orders from Google Sheets...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="error" class="error-state">
+      <div class="state-icon">❌</div>
+      <h3>Failed to load orders</h3>
+      <p id="error-msg">Please check your connection or spreadsheet configuration.</p>
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty" class="empty-state">
+      <div class="state-icon">📭</div>
+      <h3>No orders found</h3>
+      <p>Try refreshing or check your spreadsheet entries.</p>
+    </div>
+
+    <!-- Table Content -->
+    <div id="table-container" class="table-responsive fade-in delay-2" style="display: none;">
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Date/Time Needed</th>
+            <th>Cake Size</th>
+            <th>Flavor</th>
+            <th>Message</th>
+            <th>Candle?</th>
+            <th>Type</th>
+            <th>Address</th>
+            <th>Notes/Allergies</th>
+            <th>Order Status</th>
+          </tr>
+        </thead>
+        <tbody id="orders-body">
+          <!-- Data rows will be injected here -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h2>Saji Bakes <i class="fa-solid fa-cake-slice"></i></h2>
+      <p>&copy; 2026 Saji Bakes. Fresh homemade bakes.</p>
+    </div>
+  </footer>
+
+  <script src="./config.js"></script>
+  <script>
+    let allOrders = [];
+
+    function showState(state) {
+      document.getElementById('loading').classList.toggle('active', state === 'loading');
+      document.getElementById('error').classList.toggle('active', state === 'error');
+      document.getElementById('empty').classList.toggle('active', state === 'empty');
+      document.getElementById('table-container').style.display = state === 'success' ? 'block' : 'none';
+    }
+
+    async function fetchOrders() {
+      showState('loading');
+      try {
+        // Fetching columns A to K (11 columns)
+        const range = 'A:K';
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.GOOGLE_SHEETS.ORDERS_SHEET_ID}/values/${range}?key=${CONFIG.GOOGLE_SHEETS.API_KEY}`;
+
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Could not fetch data from Google Sheet');
+
+        const data = await response.json();
+        const rows = data.values || [];
+
+        if (rows.length <= 1) {
+          showState('empty');
+          return;
+        }
+
+        // Skip header row
+        allOrders = rows.slice(1).map((row, index) => ({
+          rowIndex: index + 2, // Sheet rows are 1-indexed, header is row 1
+          name: row[0] || 'N/A',
+          phone: row[1] || 'N/A',
+          dateTime: row[2] || 'N/A',
+          size: row[3] || 'N/A',
+          flavor: row[4] || 'N/A',
+          message: row[5] || '',
+          candle: (row[6] || '').toLowerCase() === 'yes' ? 'Yes' : 'No',
+          type: (row[7] || '').toLowerCase().includes('delivery') ? 'Delivery' : 'Pickup',
+          address: row[8] || 'N/A',
+          notes: row[9] || 'None',
+          status: row[10] || 'Pending'
+        }));
+
+        renderOrders(allOrders);
+        updateStats();
+        showState('success');
+      } catch (err) {
+        console.error(err);
+        document.getElementById('error-msg').textContent = err.message;
+        showState('error');
+      }
+    }
+
+    function renderOrders(orders) {
+      const tbody = document.getElementById('orders-body');
+      tbody.innerHTML = '';
+
+      orders.forEach(order => {
+        const tr = document.createElement('tr');
+
+        const typeClass = order.type === 'Delivery' ? 'badge-delivery' : 'badge-pickup';
+        const candleClass = order.candle === 'Yes' ? 'badge-candle' : 'badge-none';
+
+        tr.innerHTML = `
+          <td class="col-name">${order.name}</td>
+          <td class="col-phone">${order.phone}</td>
+          <td class="col-date">${order.dateTime}</td>
+          <td>${order.size}</td>
+          <td class="col-flavor">${order.flavor}</td>
+          <td><small>${order.message}</small></td>
+          <td><span class="badge ${candleClass}">${order.candle}</span></td>
+          <td><span class="badge ${typeClass}">${order.type}</span></td>
+          <td><small>${order.address}</small></td>
+          <td><small>${order.notes}</small></td>
+          <td>
+            <select class="status-select ${order.status.toLowerCase() === 'completed' ? 'status-completed' : 'status-pending'}" 
+                    onchange="updateStatus(${order.rowIndex}, this)">
+              <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending ⏳</option>
+              <option value="Completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed ✅</option>
+            </select>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterOrders() {
+      const query = document.getElementById('order-search').value.toLowerCase();
+      const filtered = allOrders.filter(order =>
+        order.name.toLowerCase().includes(query) ||
+        order.phone.toLowerCase().includes(query)
+      );
+      renderOrders(filtered);
+    }
+
+    function updateStats() {
+      const total = allOrders.length;
+      const pending = allOrders.filter(o => o.status.toLowerCase() !== 'completed').length;
+      const completed = allOrders.filter(o => o.status.toLowerCase() === 'completed').length;
+
+      document.getElementById('stat-total').textContent = total;
+      document.getElementById('stat-pending').textContent = pending;
+      document.getElementById('stat-completed').textContent = completed;
+    }
+
+    async function updateStatus(rowIndex, selectElement) {
+      const newStatus = selectElement.value;
+
+      // Update local data immediately for stats
+      const order = allOrders.find(o => o.rowIndex === rowIndex);
+      if (order) order.status = newStatus;
+      updateStats();
+
+      // Visual feedback
+      selectElement.disabled = true;
+      selectElement.classList.add('status-updating');
+
+      try {
+        // We use a POST request. Apps Script requires 'no-cors' if not handled with specialized headers.
+        // We send the data as a string to avoid preflight issues.
+        const response = await fetch(CONFIG.GOOGLE_SHEETS.APP_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: JSON.stringify({
+            action: 'updateOrderStatus',
+            rowIndex: rowIndex,
+            status: newStatus
+          })
+        });
+
+        // Update styling instantly for better UX
+        selectElement.classList.remove('status-pending', 'status-completed');
+        selectElement.classList.add(newStatus === 'Completed' ? 'status-completed' : 'status-pending');
+
+        console.log(`Status update sent for row ${rowIndex}: ${newStatus}`);
+
+      } catch (err) {
+        console.error('Update failed:', err);
+        alert('Failed to update status. Please try again.');
+      } finally {
+        selectElement.disabled = false;
+        selectElement.classList.remove('status-updating');
+      }
+    }
+
+    // Toggle Mobile Menu
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('active');
+      document.getElementById('hamburger').classList.toggle('active');
+    });
+
+    // Fade-in effect on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Initial load
+    window.addEventListener('load', () => {
+      // Set the dynamic sheet link
+      if (CONFIG.GOOGLE_SHEETS.ORDERS_SHEET_ID) {
+        document.getElementById('sheet-link').href = `https://docs.google.com/spreadsheets/d/${CONFIG.GOOGLE_SHEETS.ORDERS_SHEET_ID}/edit`;
+      }
+      fetchOrders();
+    });
+  </script>
+</body>
+
+</html>
